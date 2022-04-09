@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mynodejs
+spec:
+  selector:
+    matchLabels:
+      app: mynodejs
+  template:
+    metadata:
+      labels:
+        app: mynodejs
+    spec:
+      containers:
+      - name: mynodejs
+        image: mshoaibnoor/dev:nodejs
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

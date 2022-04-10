@@ -9,7 +9,9 @@ pipeline{
         stage('Docker Image Build'){
             steps{
                sh 'docker build -t main . -f Dockerfile.dockerfile'
+               sh 'docker container run -d main'
             }
+
         }
     }
 }

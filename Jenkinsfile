@@ -8,7 +8,7 @@ pipeline{
         }
         stage('Docker Image Build'){
             steps{
-               sh 'Docker build -t main . -f Dockerfile.dockerfile'
+               sh 'docker build -t main . -f Dockerfile.dockerfile'
             }
         }
     }

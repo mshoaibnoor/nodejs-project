@@ -1,10 +1,11 @@
-def ImageName = "nodejs"
-def Namespace = "default"
-def Creds = ""
-def imagetag = "1"
+def ImageName = "mshoaibnoor/dev"
+def imagetag = "nodejs-latest"
 
 pipeline{
     agent any
+    environment{
+        DOCKERHUB_CREDENTIALS = credentials('mshoaibnoor-dockerhub')
+    }
     stages{
         // stage('Build'){
         //     steps{
@@ -19,11 +20,21 @@ pipeline{
             }
 
         }
+        stage('Login'){
+            steps{
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+            }
+        }
         stage('Push to Docker Registry'){
             steps{
                 // sh 'docker tag nodejs mshoaibnoor/dev:nodejs'
-                sh "docker push ${ImageName}"
+                sh "docker push ${ImageName}:${imagetag}"
             }
+        }
+    }
+    post{
+        always{
+            sh 'docker logout'
         }
     }
 }

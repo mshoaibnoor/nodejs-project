@@ -14,8 +14,7 @@ pipeline{
         // }
         stage('Docker Image Build'){
             steps{
-            //    sh 'docker build -t main . -f Dockerfile.dockerfile'
-            //    sh 'docker container run -d main -p 8100:8100'
+            
                   sh "docker build -t ${ImageName}:${imagetag} ." 
             }
 
@@ -27,7 +26,6 @@ pipeline{
         }
         stage('Push to Docker Registry'){
             steps{
-                // sh 'docker tag nodejs mshoaibnoor/dev:nodejs'
                 sh "docker push ${ImageName}:${imagetag}"
             }
         }

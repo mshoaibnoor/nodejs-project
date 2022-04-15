@@ -1,5 +1,7 @@
 def ImageName = "mshoaibnoor/dev"
 def imagetag = "nodejs-latest"
+def DeploymentName = "nodejs-deployment.yaml"
+def ServiceName = "nodejs-service.yaml"
 
 pipeline{
     agent any
@@ -36,8 +38,8 @@ pipeline{
                 sh 'kubectl get service'
                 
                 // deployment steps
-                sh 'kubectl apply -f nodejs-deployment.yaml'
-                sh 'kubectl apply -f nodejs-service.yaml'
+                sh "kubectl apply -f ${DeploymentName}"
+                sh "kubectl apply -f ${ServiceName}"
 
                 // post deployment steps
                 sh 'kubectl get deployment'

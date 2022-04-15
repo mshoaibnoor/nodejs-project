@@ -12,7 +12,6 @@ pipeline{
         //     }
         // }
         stage('Docker Image Build'){
-            withDockerRegistry([credentialsId:"${Creds}", url: 'mshoaibnoor/dev'])
             steps{
             //    sh 'docker build -t main . -f Dockerfile.dockerfile'
             //    sh 'docker container run -d main -p 8100:8100'
@@ -22,8 +21,8 @@ pipeline{
         }
         stage('Push to Docker Registry'){
             steps{
-                sh 'docker tag nodejs mshoaibnoor/dev:nodejs'
-                sh 'docker push mshoaibnoor/dev:nodejs'
+                // sh 'docker tag nodejs mshoaibnoor/dev:nodejs'
+                sh "docker push ${ImageName}"
             }
         }
     }

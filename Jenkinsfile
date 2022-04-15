@@ -13,5 +13,11 @@ pipeline{
             }
 
         }
+        stage('Push to Docker Registry'){
+            steps{
+                sh 'docker tag nodejs mshoaibnoor/dev:nodejs'
+                sh 'docker push mshoaibnoor/dev:nodejs'
+            }
+        }
     }
 }

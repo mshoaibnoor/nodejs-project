@@ -34,9 +34,14 @@ pipeline{
                 // pre deployment steps
                 sh 'kubectl get deployment'
                 sh 'kubectl get service'
+                
                 // deployment steps
                 sh 'kubectl apply -f nodejs-deployment.yaml'
                 sh 'kubectl apply -f nodejs-service.yaml'
+
+                // post deployment steps
+                sh 'kubectl get deployment'
+                sh 'kubectl get service'
             }
         }
     }

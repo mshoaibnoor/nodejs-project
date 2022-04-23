@@ -36,8 +36,8 @@ pipeline{
         stage('Apply Kubernetes files') {
             steps{
                 withKubeConfig([credentialsId: 'jenkins-sa', serverUrl: 'https://kubernetes.docker.internal:6443']) {
-                
-                sh '/usr/local/bin/kubectl get deployment'
+                sh 'chmod 777 kubectl.sh'
+                sh 'kubectl.sh'
                 }
             }
             

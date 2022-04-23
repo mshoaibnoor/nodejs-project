@@ -34,7 +34,7 @@ pipeline{
         stage('Deploy'){
             steps{
                 // pre deployment steps
-                sh 'kubectl get deployment'
+                sh '/usr/local/bin/kubectl get deployment'
                 sh 'kubectl get service'
                 
                 // deployment steps
@@ -44,6 +44,8 @@ pipeline{
                 // post deployment steps
                 sh 'kubectl get deployment'
                 sh 'kubectl get service'
+                
+    }
             }
         }
     }

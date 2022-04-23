@@ -18,6 +18,7 @@ pipeline{
             steps{
             
                   sh "docker build -t ${ImageName}:${imagetag} ." 
+                  sh "docker scan"
             }
 
         }
@@ -40,22 +41,22 @@ pipeline{
             }
             
         }
-        stage('Deploy'){
-            steps{
-                // pre deployment steps
-                sh '/usr/local/bin/kubectl get deployment'
-                sh 'kubectl get service'
+        // stage('Deploy'){
+        //     steps{
+        //         // pre deployment steps
+        //         sh '/usr/local/bin/kubectl get deployment'
+        //         sh 'kubectl get service'
                 
-                // deployment steps
-                sh "kubectl apply -f ${DeploymentName}"
-                sh "kubectl apply -f ${ServiceName}"
+        //         // deployment steps
+        //         sh "kubectl apply -f ${DeploymentName}"
+        //         sh "kubectl apply -f ${ServiceName}"
 
-                // post deployment steps
-                sh 'kubectl get deployment'
-                sh 'kubectl get service'
+        //         // post deployment steps
+        //         sh 'kubectl get deployment'
+        //         sh 'kubectl get service'
                 
-            }
-        }
+        //     }
+        // }
     }
 
     // post{

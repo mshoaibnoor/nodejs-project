@@ -45,10 +45,10 @@ pipeline{
                 sh 'kubectl get deployment'
                 sh 'kubectl get service'
                 
-    }
             }
         }
     }
+
     // post{
     //     always{
     //         sh 'docker logout'

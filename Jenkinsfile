@@ -18,7 +18,7 @@ pipeline{
             steps{
             
                   sh "docker build -t ${ImageName}:${imagetag} ." 
-                  sh "docker scan"
+                  sh "docker scan ${ImageName}"
             }
 
         }
